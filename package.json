@@ -1,0 +1,34 @@
+{
+  "name": "mern",
+  "version": "1.0.0",
+  "description": "Mern",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "server": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sergeycin/mern.git"
+  },
+  "keywords": [
+    "mern"
+  ],
+  "author": "sergey ptycin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sergeycin/mern/issues"
+  },
+  "homepage": "https://github.com/sergeycin/mern#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.7",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.8",
+    "mongose": "^0.0.2-security"
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "nodemon": "^2.0.15"
+  }
+}
