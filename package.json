@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "server": "nodemon app.js"
+    "server": "nodemon app.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \" npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -24,6 +26,8 @@
     "bcryptjs": "^2.4.3",
     "config": "^3.3.7",
     "express": "^4.17.2",
+    "express-validator": "^6.14.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.8",
     "mongose": "^0.0.2-security"
   },
