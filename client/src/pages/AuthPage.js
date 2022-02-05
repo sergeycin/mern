@@ -1,15 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHttp } from "../hooks/http.hook";
+import { useMessage } from "../hooks/message.hook";
 
 export const AuthPage = () =>{
-  const {loading,error,request} = useHttp() 
+  const message = useMessage()
+  const {loading,error,request, clearError} = useHttp() 
 
     const [form,setForm] = useState({
         email: '', password:''
     })
 
+    useEffect(()=>{
+      message(error)
+      clearError()
+    }, [error,message,clearError])
+
     const changeHandler = event =>{
-        setForm({ ...form, [event.target.name]: event.targer.value})
+        setForm({ ...form, [event.target.name]: event.target.value})
     }
 
     const registerHandler = async () =>{
@@ -55,8 +62,8 @@ export const AuthPage = () =>{
         </div>
         </div>
         <div className="card-action">
-        <button className="btn yellow darken-4 z-depth-2" disabled={true}  style={{marginRight:10}}>Войти</button>
-        <button onClick={registerHandler} disabled={true} className="btn gray ligten-1 black-text z-depth-2">Регистрация</button>
+        <button className="btn yellow darken-4 z-depth-2" disabled={loading}  style={{marginRight:10}}>Войти</button>
+        <button onClick={registerHandler} disabled={loading} className="btn gray ligten-1 black-text z-depth-2">Регистрация</button>
         </div>
       </div>
             </div>

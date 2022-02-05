@@ -20,7 +20,7 @@ export const useRoutes = isAuthenticated =>{
             
             
              </Routes>
-              <Navigate to="/create" replace={true} />
+              {/* <Navigate to="/create" replace={true} /> */}
               </>
      )
  }
@@ -32,7 +32,7 @@ export const useRoutes = isAuthenticated =>{
     <Route path="/" element={<AuthPage/>}/> 
 
   </Routes>
-  <Navigate to="/" replace={true} />
+  {/* <Navigate to="/" replace={true} /> */}
  </>
 
        
