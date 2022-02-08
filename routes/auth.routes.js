@@ -1,7 +1,7 @@
 const {Router} = require('express')
-const bcrypt = require('bcryptjs')
-const config = require('config')
-const jwt = require('jsonwebtoken')
+const bcrypt = require('bcryptjs') // шифрование пароля
+const config = require('config') // библиотека для использования данных где угодно которые зашиты в файле config.json
+const jwt = require('jsonwebtoken') // Современный метод защиты при авторизации пользователя
 const User = require('../models/Users')
 const {check, validationResult} = require('express-validator')
 const router = Router()

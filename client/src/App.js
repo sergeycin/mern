@@ -13,10 +13,11 @@ function App() {
   return (
 
     <>
-    {isAuthenticated && <Navbar/>}
+    
     <AuthContext.Provider value={{
       token,login,logout,userId, isAuthenticated
     }}>
+      {isAuthenticated && <Navbar/>}
      {routes}
 
      </AuthContext.Provider>

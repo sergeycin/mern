@@ -9,8 +9,8 @@ export const Navbar = () =>{
     const logoutHandler = event =>{
         try {
             auth.logout()
-            console.log('exit')
-            navigate("/create")
+            
+            navigate("/")
            event.preventDefault()
         }
        catch(e)
