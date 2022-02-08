@@ -1,26 +1,31 @@
 import React from "react"
-import {Routes ,Route , NavLink, Navigate } from 'react-router-dom'
+import {Routes ,Route , NavLink, Navigate, useNavigate } from 'react-router-dom'
 import { CreatePage } from "./pages/CreatePage"
 import { DetailPage } from "./pages/DetailPage"
 import { LinksPage } from "./pages/LinksPage"
 import {AuthPage} from "./pages/AuthPage"
 
 export const useRoutes = isAuthenticated =>{
+  const navigate= useNavigate();
  if(isAuthenticated){
      return(
+       
         <>
+        
+         {/* <Navigate to="/create" /> */}
+        
       <Routes>
 
-          
+      <Route path="/create" element={<CreatePage/>}/> 
             <Route path="/links" element={<LinksPage/>}/> 
            
-            <Route path="/create" element={<CreatePage/>}/> 
+            
             <Route path="/detail/:id" element={<DetailPage/>}/> 
          
             
             
              </Routes>
-              {/* <Navigate to="/create" replace={true} /> */}
+             
               </>
      )
  }

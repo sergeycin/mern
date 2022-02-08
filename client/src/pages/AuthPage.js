@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 import { useHttp } from "../hooks/http.hook";
 import { useMessage } from "../hooks/message.hook";
 
+
 export const AuthPage = () =>{
+  const navigate= useNavigate();
+  const auth = useContext(AuthContext)
   const message = useMessage()
   const {loading,error,request, clearError} = useHttp() 
 
@@ -22,10 +27,23 @@ export const AuthPage = () =>{
     const registerHandler = async () =>{
       try{
         const data = await request('/api/auth/register','POST',{...form})
+        message(data.message)
         console.log('Data',data)
+
       }catch (e){}
     }
 
+    const loginHandler = async () =>{
+      try{
+      
+        const data = await request('/api/auth/login','POST',{...form})
+        auth.login(data.token,data.userId)
+        message(data.message)
+        console.log('Data',data)
+        navigate("/create")
+      }catch (e){}
+    }
+   
     return (
         <div className="container">
   <div className="row">
@@ -62,7 +80,7 @@ export const AuthPage = () =>{
         </div>
         </div>
         <div className="card-action">
-        <button className="btn yellow darken-4 z-depth-2" disabled={loading}  style={{marginRight:10}}>Войти</button>
+        <button onClick={loginHandler} className="btn yellow darken-4 z-depth-2" disabled={loading}  style={{marginRight:10}}>Войти</button>
         <button onClick={registerHandler} disabled={loading} className="btn gray ligten-1 black-text z-depth-2">Регистрация</button>
         </div>
       </div>
