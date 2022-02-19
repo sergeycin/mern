@@ -16,25 +16,31 @@ router.post('/generate', auth, async(req,res) =>{
         if(existing){
             res.json({link:existing})
         }
+        else{
+            const to = baseUrl + '/t/' + code
+            const link = new Link({
+                code,to,from,owner:req.user.userId
+            })
+    
+            await link.save()
+    
+            res.status(201).json({link})
+        }
 
-        const to = baseUrl + '/t/' + code
-        const link = new Link({
-            code,to,from,owner:req.user.userId
-        })
-
-        await link.save()
-
-        res.status(201).json({link})
+      
      
     }catch(e){
         res.status(500).json({message: "Вы точно не right"})
     }
 })
 
+
+
+
 router.get('/',auth,async(req,res)=>{
     try{
-        const link = await Link.find({ owner: req.user.userId})
-        res.json(Link)
+        const links = await Link.find({ owner: req.user.userId})
+        res.json(links)
      
       }catch(e){
           res.status(500).json({message: "Вы точно не right"})
@@ -44,6 +50,7 @@ router.get('/',auth,async(req,res)=>{
 router.get('/:id',auth,async(req,res)=>{
     try{
         const link = await Link.findById(req.params.id)
+        console.log(link)
         res.json(link)
         
      

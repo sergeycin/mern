@@ -6,7 +6,7 @@ import { useHttp } from "../hooks/http.hook";
 
 export const DetailPage = () =>{
     const {token} = useContext(AuthContext)
-    const {request,loading} =useHttp()
+    const {request} =useHttp()
     const [link,setLink]=useState(null)
     const linkId = useParams().id
 
